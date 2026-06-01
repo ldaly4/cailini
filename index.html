@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cailíní Preview</title>
+    <style>
+      :root {
+        --oat: #fff9f0;
+        --cream: #fff8e7;
+        --clay: #334eac;
+        --coral: #95bbea;
+        --charcoal: #081f5c;
+        --cocoa: #334eac;
+        --mist: #d0e3ff;
+        --sangria: #930500;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--oat);
+        color: var(--charcoal);
+        font-family: "DM Sans", Avenir, system-ui, sans-serif;
+      }
+      .display { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+      .script { font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", cursive; }
+      nav {
+        position: fixed;
+        z-index: 10;
+        inset: 0 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px clamp(18px, 4vw, 48px);
+        border-bottom: 1px solid rgba(8, 31, 92, .16);
+        background: rgba(255, 249, 240, .9);
+        backdrop-filter: blur(14px);
+      }
+      nav a { color: inherit; text-decoration: none; font-weight: 700; }
+      .logo { font-size: 28px; }
+      .logo-wrap { display: flex; align-items: center; gap: 10px; }
+      .mini-stamp {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 2px solid var(--clay);
+        border-radius: 50%;
+        color: var(--clay);
+        font-size: 18px;
+      }
+      .navlinks { display: flex; gap: 28px; color: var(--cocoa); font-size: 14px; }
+      button {
+        border: 0;
+        border-radius: 999px;
+        background: var(--clay);
+        color: var(--cream);
+        padding: 13px 22px;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 22px 60px rgba(8,31,92,.14);
+      }
+      section { padding: 88px clamp(18px, 4vw, 48px); }
+      .inner { max-width: 1240px; margin: 0 auto; }
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        border-block: 2px solid var(--clay);
+        background-image:
+          radial-gradient(circle at 80% 20%, rgba(149,187,234,.45), transparent 25%),
+          linear-gradient(90deg, rgba(51,78,172,.11) 1px, transparent 1px);
+        background-size: 14px 100%;
+      }
+      .blob {
+        position: absolute;
+        right: -90px;
+        top: 140px;
+        width: min(520px, 45vw);
+        height: min(520px, 45vw);
+        background: rgba(149,187,234,.28);
+        border-radius: 55% 45% 50% 50% / 60% 36% 64% 40%;
+      }
+      .brand-card {
+        max-width: 460px;
+        margin-top: 70px;
+        border: 1px solid rgba(8,31,92,.16);
+        border-radius: 32px;
+        background: rgba(255,248,231,.82);
+        padding: 28px;
+        box-shadow: 0 22px 60px rgba(8,31,92,.12);
+      }
+      .brand-row { display: flex; align-items: center; gap: 18px; }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 92px;
+        height: 92px;
+        border: 2px solid var(--clay);
+        border-radius: 50%;
+        color: var(--clay);
+        font-size: 42px;
+        background: var(--cream);
+      }
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--sangria);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 0;
+        max-width: 980px;
+        font-size: clamp(64px, 12vw, 162px);
+        line-height: .83;
+        letter-spacing: -0.04em;
+      }
+      .hero p:last-of-type {
+        max-width: 660px;
+        color: var(--cocoa);
+        font-size: clamp(20px, 2.2vw, 28px);
+        line-height: 1.35;
+        margin: 34px 0 0;
+      }
+      h2 {
+        margin: 0;
+        font-size: clamp(52px, 7vw, 92px);
+        line-height: .9;
+        letter-spacing: -0.035em;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        margin-bottom: 34px;
+      }
+      .section-head p { max-width: 360px; color: var(--cocoa); }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .tile, .step, .stat {
+        border: 1px solid rgba(8,31,92,.18);
+        border-radius: 24px;
+        background: var(--cream);
+        padding: 24px;
+        box-shadow: 0 22px 60px rgba(8,31,92,.12);
+      }
+      .tile.selected { background: var(--clay); color: var(--cream); }
+      .icon {
+        display: grid;
+        place-items: center;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 34px;
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        color: var(--clay);
+        font-size: 23px;
+      }
+      .selected .icon { color: var(--cream); }
+      .tile h3, .step p { margin: 0; font-size: 20px; }
+      .tile p { color: var(--cocoa); margin: 10px 0 0; line-height: 1.45; }
+      .selected p { color: rgba(255,248,231,.82); }
+      .how {
+        background:
+          linear-gradient(90deg, rgba(51,78,172,.11) 1px, transparent 1px) 0 0 / 14px 100%,
+          var(--cream);
+        border-block: 2px solid rgba(51,78,172,.35);
+      }
+      .steps { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .num {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        margin-bottom: 72px;
+        border-radius: 999px;
+        background: var(--clay);
+        color: var(--cream);
+      }
+      .why { background: var(--mist); }
+      .stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .stat strong {
+        display: block;
+        color: var(--clay);
+        font-size: clamp(60px, 8vw, 92px);
+        line-height: 1;
+      }
+      .stat p { font-size: 22px; font-weight: 800; line-height: 1.25; }
+      .stat small { color: rgba(91,69,57,.75); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      footer {
+        display: flex;
+        gap: 22px;
+        justify-content: space-between;
+        padding: 34px clamp(18px, 4vw, 48px);
+        color: var(--cocoa);
+        border-top: 1px solid rgba(8,31,92,.16);
+      }
+      @media (max-width: 860px) {
+        .navlinks { display: none; }
+        .section-head { align-items: start; flex-direction: column; }
+        .grid, .steps, .stats { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="logo-wrap" href="#"><span class="mini-stamp">✿</span><span class="logo script">Cailíní</span></a>
+      <div class="navlinks">
+        <a href="#activities">Activities</a>
+        <a href="#how">How it works</a>
+        <a href="#why">Why now</a>
+      </div>
+      <button>Join</button>
+    </nav>
+
+    <section class="hero">
+      <div class="blob"></div>
+      <div class="inner">
+        <p class="eyebrow">Coming to Dublin first</p>
+        <h1 class="display">Find your women. Start moving.</h1>
+        <p class="script" style="font-size: clamp(86px, 13vw, 180px); color: var(--clay); line-height: .7; margin: 28px 0 0;">Cailíní</p>
+        <p>Whatever the activity. Whatever your level. Just show up together.</p>
+        <button style="margin-top: 40px;">Join the waitlist</button>
+        <div class="brand-card">
+          <div class="brand-row">
+            <div class="brand-mark">✿</div>
+            <div>
+              <p class="script" style="font-size: 78px; color: var(--clay); line-height: .75; margin: 0;">Cailíní</p>
+              <p style="color: var(--sangria); font-size: 12px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; margin: 4px 0 0;">For the girlies, by the girlies</p>
+            </div>
+          </div>
+          <p style="color: var(--cocoa); margin: 26px 0 0;">Sport, wellness, and community for women who want someone to show up with.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Activity selector</p>
+            <h2 class="display">What moves you?</h2>
+          </div>
+          <p>Tap a few. Your picks carry into the waitlist form in the real app.</p>
+        </div>
+        <div class="grid">
+          <article class="tile selected"><div class="icon">⌁</div><h3>Running</h3><p>Easy loops, steady starts.</p></article>
+          <article class="tile"><div class="icon">↟</div><h3>Walking</h3><p>Fresh air without the pressure.</p></article>
+          <article class="tile"><div class="icon">⛳</div><h3>Golf</h3><p>Friendly rounds and beginner energy.</p></article>
+          <article class="tile selected"><div class="icon">◌</div><h3>Pilates</h3><p>Try a class with someone new.</p></article>
+          <article class="tile"><div class="icon">◍</div><h3>Padel</h3><p>Find a partner before you book.</p></article>
+          <article class="tile"><div class="icon">◇</div><h3>Tennis</h3><p>Rallies, lessons, weekend hits.</p></article>
+          <article class="tile"><div class="icon">☾</div><h3>Yoga</h3><p>Slow mornings and strong resets.</p></article>
+          <article class="tile"><div class="icon">▱</div><h3>Strength</h3><p>Gym confidence, shared.</p></article>
+          <article class="tile"><div class="icon">○</div><h3>Cycling</h3><p>Coffee spins and city routes.</p></article>
+          <article class="tile"><div class="icon">≈</div><h3>Swimming</h3><p>Lanes, dips, and sea mornings.</p></article>
+          <article class="tile"><div class="icon">✦</div><h3>Ballet & Dance</h3><p>Move for joy, not perfection.</p></article>
+          <article class="tile"><div class="icon">△</div><h3>Hiking</h3><p>Trail days with women nearby.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="inner">
+        <h2 class="display" style="margin-bottom: 40px;">How it works</h2>
+        <div class="grid steps">
+          <article class="step"><span class="num display">01</span><p>Tell us what you love (or want to try)</p></article>
+          <article class="step"><span class="num display">02</span><p>We match you with women near you</p></article>
+          <article class="step"><span class="num display">03</span><p>Show up together</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why" id="why">
+      <div class="inner">
+        <p class="eyebrow">Why it exists</p>
+        <h2 class="display" style="max-width: 780px; margin-bottom: 40px;">Most people just need a first person.</h2>
+        <div class="grid stats">
+          <article class="stat"><strong class="display">90%</strong><p>of women at Dublin's biggest women's social club arrive alone</p><small>Source: community onboarding survey</small></article>
+          <article class="stat"><strong class="display">28,000</strong><p>women sold out the 2025 Women's Mini Marathon</p><small>Source: Vhi Women's Mini Marathon 2025</small></article>
+          <article class="stat"><strong class="display">59%</strong><p>of women who tried Golf Ireland's beginner program came back</p><small>Source: Golf Ireland beginner participation reporting</small></article>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <strong class="script" style="font-size: 34px;">Cailíní</strong>
+      <span>Coming to Dublin first</span>
+      <span>Instagram</span>
+      <span>Privacy notice</span>
+    </footer>
+  </body>
+</html>
