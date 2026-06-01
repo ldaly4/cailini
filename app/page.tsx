@@ -164,6 +164,49 @@ function Icon({ type }: { type: string }) {
   );
 }
 
+function BrandStamp({ small = false }: { small?: boolean }) {
+  return (
+    <div
+      className={`relative grid shrink-0 place-items-center rounded-full border-2 border-clay text-clay ${
+        small ? "h-12 w-12" : "h-48 w-48 md:h-60 md:w-60"
+      }`}
+      aria-hidden="true"
+    >
+      <div className="absolute inset-1 rounded-full border border-clay" />
+      <div className={`grid place-items-center rounded-full border border-clay/40 ${small ? "h-8 w-8" : "h-28 w-28"}`}>
+        <svg
+          className={small ? "h-6 w-6" : "h-16 w-16"}
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.8"
+          viewBox="0 0 48 48"
+        >
+          <circle cx="12" cy="20" r="4" />
+          <circle cx="36" cy="20" r="4" />
+          <circle cx="24" cy="12" r="4" />
+          <path d="M12 25c4 9 20 9 24 0" />
+          <path d="M15 31c4 6 14 8 18 0" />
+          <path d="M24 28c-4-5-9-4-9 1 0 4 5 6 9 10 4-4 9-6 9-10 0-5-5-6-9-1Z" />
+          <path d="M24 39v5" />
+          <path d="M19 43h10" />
+        </svg>
+      </div>
+      {!small && (
+        <>
+          <p className="absolute top-5 text-[0.66rem] font-black uppercase tracking-[0.28em]">Sport · Wellness</p>
+          <p className="absolute bottom-5 text-[0.66rem] font-black uppercase tracking-[0.24em]">
+            By the girlies
+          </p>
+          <span className="absolute left-8 top-1/2 -translate-y-1/2 text-sangria">♥</span>
+          <span className="absolute right-8 top-1/2 -translate-y-1/2 text-sangria">♥</span>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -217,8 +260,9 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-oat text-charcoal">
       <nav className="fixed inset-x-0 top-0 z-40 border-b border-charcoal/10 bg-oat/88 px-4 py-3 backdrop-blur md:px-8">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <a className="font-display text-2xl text-charcoal" href="#top" aria-label="Tee Party home">
-            Tee Party
+          <a className="flex items-center gap-3 text-charcoal" href="#top" aria-label="Cailíní home">
+            <BrandStamp small />
+            <span className="script-wordmark text-4xl leading-none">Cailíní</span>
           </a>
           <div className="hidden items-center gap-7 text-sm font-semibold text-cocoa md:flex">
             <a href="#activities">Activities</a>
@@ -247,6 +291,7 @@ export default function Home() {
             <h1 className="font-display text-[clamp(4.2rem,12vw,10.5rem)] leading-[0.83] tracking-tight text-charcoal">
               Find your women. Start moving.
             </h1>
+            <p className="script-wordmark mt-5 text-[clamp(4.8rem,12vw,11rem)] leading-[0.7] text-clay">Cailíní</p>
             <p className="mt-8 max-w-2xl text-xl leading-8 text-cocoa md:text-2xl">
               Whatever the activity. Whatever your level. Just show up together.
             </p>
@@ -258,10 +303,14 @@ export default function Home() {
               Join the waitlist
             </button>
           </div>
-          <div className="rounded-[2rem] border border-charcoal/10 bg-cream/78 p-6 shadow-soft backdrop-blur">
-            <p className="font-display text-5xl leading-none text-clay">Dublin, then everywhere.</p>
-            <p className="mt-5 text-cocoa">
-              A calm way to find women nearby for the sports and activities you keep meaning to start.
+          <div className="grid justify-items-center rounded-[2rem] border border-charcoal/10 bg-cream/78 p-8 text-center shadow-soft backdrop-blur">
+            <BrandStamp />
+            <p className="script-wordmark mt-8 text-7xl leading-none text-clay">Cailíní</p>
+            <p className="mt-3 text-sm font-black uppercase tracking-[0.22em] text-sangria">
+              For the girlies, by the girlies
+            </p>
+            <p className="mt-5 max-w-sm text-cocoa">
+              Sport, wellness, and community for women who want someone to show up with.
             </p>
           </div>
         </div>
@@ -347,7 +396,7 @@ export default function Home() {
 
       <footer className="px-4 py-10 md:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 border-t border-charcoal/10 pt-8 text-sm text-cocoa md:flex-row md:items-center md:justify-between">
-          <p className="font-display text-2xl text-charcoal">Tee Party</p>
+          <p className="script-wordmark text-4xl leading-none text-charcoal">Cailíní</p>
           <p>Coming to Dublin first</p>
           <a href="#" aria-label="Instagram placeholder">
             Instagram

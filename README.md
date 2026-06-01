@@ -1,4 +1,4 @@
-# Tee Party
+# Cailíní
 
 Pre-launch waitlist landing page for women in Dublin who want to find other women to do sport and activities with.
 

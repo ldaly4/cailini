@@ -15,7 +15,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tee Party | Find your women. Start moving.",
+  title: "Cailíní | Find your women. Start moving.",
   description: "A pre-launch waitlist for women in Dublin who want to find other women to do sport and activities with."
 };
 

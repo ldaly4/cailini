@@ -35,3 +35,8 @@ select {
 .organic-blob {
   border-radius: 55% 45% 50% 50% / 60% 36% 64% 40%;
 }
+
+.script-wordmark {
+  font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", cursive;
+  letter-spacing: 0;
+}
