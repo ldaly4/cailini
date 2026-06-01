@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --pinstripe: linear-gradient(90deg, rgba(45, 42, 38, 0.055) 1px, transparent 1px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f4ebdd;
+  color: #2d2a26;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.pinstripe {
+  background-image: var(--pinstripe);
+  background-size: 14px 100%;
+}
+
+.organic-blob {
+  border-radius: 55% 45% 50% 50% / 60% 36% 64% 40%;
+}
