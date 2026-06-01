@@ -243,7 +243,7 @@ export default function Home() {
         <div className="organic-blob absolute -bottom-24 left-6 h-56 w-56 bg-clay/10 md:h-80 md:w-80" />
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.75fr] lg:items-end">
           <div>
-            <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-clay">Coming to Dublin first</p>
+            <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Coming to Dublin first</p>
             <h1 className="font-display text-[clamp(4.2rem,12vw,10.5rem)] leading-[0.83] tracking-tight text-charcoal">
               Find your women. Start moving.
             </h1>
@@ -271,7 +271,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-clay">Activity selector</p>
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Activity selector</p>
               <h2 className="font-display text-5xl leading-none md:text-7xl">What moves you?</h2>
             </div>
             <p className="max-w-sm text-cocoa">{selectedText}</p>
@@ -330,7 +330,7 @@ export default function Home() {
       <section id="why" className="bg-mist px-4 py-20 md:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl">
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-clay">Why it exists</p>
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Why it exists</p>
             <h2 className="font-display text-5xl leading-none md:text-7xl">Most people just need a first person.</h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
@@ -363,7 +363,7 @@ export default function Home() {
           <div className="max-h-[92vh] w-full max-w-2xl overflow-auto rounded-[2rem] bg-cream p-6 shadow-soft md:p-8">
             <div className="mb-6 flex items-start justify-between gap-5">
               <div>
-                <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-clay">Waitlist</p>
+                <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Waitlist</p>
                 <h2 className="font-display text-4xl leading-none md:text-5xl">Save your spot</h2>
               </div>
               <button
@@ -377,7 +377,7 @@ export default function Home() {
 
             {submissionState === "success" ? (
               <div className="rounded-[1.5rem] bg-oat p-7">
-                <p className="font-display text-4xl text-clay">You&apos;re in.</p>
+                <p className="font-display text-4xl text-sangria">You&apos;re in.</p>
                 <p className="mt-4 text-lg text-cocoa">We&apos;ll be in touch when we launch in your area.</p>
               </div>
             ) : (

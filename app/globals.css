@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: light;
-  --pinstripe: linear-gradient(90deg, rgba(45, 42, 38, 0.055) 1px, transparent 1px);
+  --pinstripe: linear-gradient(90deg, rgba(51, 78, 172, 0.105) 1px, transparent 1px);
 }
 
 * {
@@ -17,8 +17,8 @@ html {
 
 body {
   margin: 0;
-  background: #f4ebdd;
-  color: #2d2a26;
+  background: #fff9f0;
+  color: #081f5c;
 }
 
 button,

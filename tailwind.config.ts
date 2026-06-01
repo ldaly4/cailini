@@ -5,20 +5,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        oat: "#F4EBDD",
+        oat: "#FFF9F0",
         cream: "#FFF8E7",
-        clay: "#B85E45",
-        coral: "#D5795E",
-        charcoal: "#2D2A26",
-        cocoa: "#5B4539",
-        mist: "#E7DED2"
+        clay: "#334EAC",
+        coral: "#95BBEA",
+        charcoal: "#081F5C",
+        cocoa: "#334EAC",
+        mist: "#D0E3FF",
+        sangria: "#930500"
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],
         sans: ["var(--font-sans)", "sans-serif"]
       },
       boxShadow: {
-        soft: "0 28px 80px rgba(61, 45, 36, 0.14)"
+        soft: "0 28px 80px rgba(8, 31, 92, 0.13)"
       }
     }
   },
