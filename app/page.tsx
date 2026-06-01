@@ -53,6 +53,12 @@ const stats = [
   }
 ];
 
+const steps = [
+  { icon: "heart", text: "Tell us what you love (or want to try)" },
+  { icon: "match", text: "We match you with women near you" },
+  { icon: "show", text: "Show up together" }
+];
+
 type SubmissionState = "idle" | "loading" | "success" | "error";
 
 function Icon({ type }: { type: string }) {
@@ -144,6 +150,27 @@ function Icon({ type }: { type: string }) {
         <path d="m3 21 7-12 4 6 3-5 4 11H3Z" />
         <path d="M10 9 8 5" />
         <path d="M8 5h5" />
+      </>
+    ),
+    heart: (
+      <>
+        <path d="M12 21s-8-4.8-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.2-8 11-8 11Z" />
+      </>
+    ),
+    match: (
+      <>
+        <circle cx="8" cy="8" r="3" />
+        <circle cx="16" cy="16" r="3" />
+        <path d="M11 10.5 13.5 13" />
+        <path d="M4 20c.7-3.2 2.4-5 4-5" />
+        <path d="M20 4c-.7 3.2-2.4 5-4 5" />
+      </>
+    ),
+    show: (
+      <>
+        <path d="M4 18 10 6l4 8 2-4 4 8H4Z" />
+        <path d="M4 22h16" />
+        <path d="M10 6h5" />
       </>
     )
   };
@@ -267,15 +294,14 @@ export default function Home() {
         id="top"
         className="pinstripe relative flex min-h-screen items-center px-4 pb-16 pt-28 md:px-8"
       >
-        <div className="organic-blob absolute -right-24 top-28 h-72 w-72 bg-coral/16 md:h-[34rem] md:w-[34rem]" />
-        <div className="organic-blob absolute -bottom-24 left-6 h-56 w-56 bg-clay/10 md:h-80 md:w-80" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.75fr] lg:items-end">
-          <div>
+        <div className="organic-blob absolute -right-24 top-28 h-72 w-72 bg-coral/14 md:h-[34rem] md:w-[34rem]" />
+        <div className="organic-blob absolute -bottom-24 left-6 h-56 w-56 bg-clay/8 md:h-80 md:w-80" />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="max-w-5xl">
             <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Coming to Dublin first</p>
             <h1 className="font-display text-[clamp(4.2rem,12vw,10.5rem)] leading-[0.83] tracking-tight text-charcoal">
               Find your women. Start moving.
             </h1>
-            <p className="script-wordmark mt-5 text-[clamp(4.8rem,12vw,11rem)] leading-[0.7] text-clay">Cailíní</p>
             <p className="mt-8 max-w-2xl text-xl leading-8 text-cocoa md:text-2xl">
               Whatever the activity. Whatever your level. Just show up together.
             </p>
@@ -286,20 +312,6 @@ export default function Home() {
             >
               Join the waitlist
             </button>
-          </div>
-          <div className="rounded-[2rem] border border-charcoal/10 bg-cream/78 p-8 shadow-soft backdrop-blur">
-            <div className="flex items-center gap-5">
-              <BrandMark />
-              <div>
-                <p className="script-wordmark text-7xl leading-none text-clay">Cailíní</p>
-                <p className="mt-1 text-xs font-black uppercase tracking-[0.22em] text-sangria">
-                  For the girlies, by the girlies
-                </p>
-              </div>
-            </div>
-            <p className="mt-8 max-w-sm text-cocoa">
-              Sport, wellness, and community for women who want someone to show up with.
-            </p>
           </div>
         </div>
       </section>
@@ -348,16 +360,12 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-10 font-display text-5xl leading-none md:text-7xl">How it works</h2>
           <div className="grid gap-4 md:grid-cols-3">
-            {[
-              ["01", "Tell us what you love (or want to try)"],
-              ["02", "We match you with women near you"],
-              ["03", "Show up together"]
-            ].map(([number, text]) => (
-              <article key={number} className="rounded-[1.5rem] border border-charcoal/10 bg-oat p-7 shadow-soft">
-                <span className="mb-16 inline-flex h-12 w-12 items-center justify-center rounded-full bg-clay font-display text-xl text-cream">
-                  {number}
+            {steps.map((step) => (
+              <article key={step.text} className="rounded-[1.5rem] border border-charcoal/10 bg-oat p-7 shadow-soft">
+                <span className="mb-16 inline-flex h-12 w-12 items-center justify-center rounded-full bg-clay text-cream">
+                  <Icon type={step.icon} />
                 </span>
-                <p className="text-xl font-bold leading-7">{text}</p>
+                <p className="text-xl font-bold leading-7">{step.text}</p>
               </article>
             ))}
           </div>
