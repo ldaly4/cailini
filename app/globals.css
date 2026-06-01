@@ -33,10 +33,86 @@ select {
 }
 
 .organic-blob {
+  animation: float-soft 12s ease-in-out infinite;
   border-radius: 55% 45% 50% 50% / 60% 36% 64% 40%;
 }
 
 .script-wordmark {
   font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", cursive;
   letter-spacing: 0;
+}
+
+.motion-rise {
+  animation: rise-in 780ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.motion-rise-delay {
+  animation: rise-in 780ms cubic-bezier(0.2, 0.8, 0.2, 1) 140ms both;
+}
+
+.motion-scale {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.motion-scale:hover {
+  transform: translateY(-4px);
+}
+
+.motion-press:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.modal-pop {
+  animation: modal-pop 260ms ease-out both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(-12px, 16px, 0) rotate(5deg);
+  }
+}
+
+@keyframes modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

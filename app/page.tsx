@@ -281,7 +281,7 @@ export default function Home() {
             <a href="#why">Why now</a>
           </div>
           <button
-            className="rounded-full bg-clay px-5 py-2.5 text-sm font-bold text-cream shadow-soft transition hover:bg-coral"
+            className="motion-press rounded-full bg-clay px-5 py-2.5 text-sm font-bold text-cream shadow-soft transition hover:bg-coral"
             type="button"
             onClick={openJoinModal}
           >
@@ -297,7 +297,7 @@ export default function Home() {
         <div className="organic-blob absolute -right-24 top-28 h-72 w-72 bg-coral/14 md:h-[34rem] md:w-[34rem]" />
         <div className="organic-blob absolute -bottom-24 left-6 h-56 w-56 bg-clay/8 md:h-80 md:w-80" />
         <div className="relative mx-auto max-w-7xl">
-          <div className="max-w-5xl">
+          <div className="motion-rise max-w-5xl">
             <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Coming to Dublin first</p>
             <h1 className="font-display text-[clamp(4.2rem,12vw,10.5rem)] leading-[0.83] tracking-tight text-charcoal">
               Find your women. Start moving.
@@ -306,7 +306,7 @@ export default function Home() {
               Whatever the activity. Whatever your level. Just show up together.
             </p>
             <button
-              className="mt-10 rounded-full bg-clay px-8 py-4 text-base font-bold text-cream shadow-soft transition hover:bg-coral"
+              className="motion-press mt-10 rounded-full bg-clay px-8 py-4 text-base font-bold text-cream shadow-soft transition hover:bg-coral"
               type="button"
               onClick={openJoinModal}
             >
@@ -316,7 +316,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="activities" className="px-4 py-20 md:px-8">
+      <section id="activities" className="motion-rise-delay px-4 py-20 md:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
@@ -332,7 +332,7 @@ export default function Home() {
               return (
                 <button
                   key={activity.name}
-                  className={`group rounded-[1.4rem] border p-5 text-left shadow-soft transition ${
+                  className={`motion-scale motion-press group rounded-[1.4rem] border p-5 text-left shadow-soft transition ${
                     selected
                       ? "border-clay bg-clay text-cream"
                       : "border-charcoal/10 bg-cream text-charcoal hover:border-clay/60"
@@ -356,12 +356,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="how" className="border-y border-charcoal/10 bg-cream px-4 py-20 md:px-8">
+      <section id="how" className="motion-rise border-y border-charcoal/10 bg-cream px-4 py-20 md:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-10 font-display text-5xl leading-none md:text-7xl">How it works</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {steps.map((step) => (
-              <article key={step.text} className="rounded-[1.5rem] border border-charcoal/10 bg-oat p-7 shadow-soft">
+              <article key={step.text} className="motion-scale rounded-[1.5rem] border border-charcoal/10 bg-oat p-7 shadow-soft">
                 <span className="mb-16 inline-flex h-12 w-12 items-center justify-center rounded-full bg-clay text-cream">
                   <Icon type={step.icon} />
                 </span>
@@ -372,7 +372,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="why" className="bg-mist px-4 py-20 md:px-8">
+      <section id="why" className="motion-rise bg-mist px-4 py-20 md:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Why it exists</p>
@@ -380,7 +380,7 @@ export default function Home() {
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
             {stats.map((stat) => (
-              <article key={stat.value} className="rounded-[1.5rem] bg-oat p-7 shadow-soft">
+              <article key={stat.value} className="motion-scale rounded-[1.5rem] bg-oat p-7 shadow-soft">
                 <p className="font-display text-6xl text-clay md:text-7xl">{stat.value}</p>
                 <p className="mt-5 text-xl font-bold leading-7">{stat.text}</p>
                 <p className="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-cocoa/70">{stat.source}</p>
@@ -405,14 +405,14 @@ export default function Home() {
 
       {modalOpen && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-charcoal/35 px-4 py-8 backdrop-blur-sm">
-          <div className="max-h-[92vh] w-full max-w-2xl overflow-auto rounded-[2rem] bg-cream p-6 shadow-soft md:p-8">
+          <div className="modal-pop max-h-[92vh] w-full max-w-2xl overflow-auto rounded-[2rem] bg-cream p-6 shadow-soft md:p-8">
             <div className="mb-6 flex items-start justify-between gap-5">
               <div>
                 <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Waitlist</p>
                 <h2 className="font-display text-4xl leading-none md:text-5xl">Save your spot</h2>
               </div>
               <button
-                className="rounded-full border border-charcoal/15 px-4 py-2 font-bold text-charcoal"
+                className="motion-press rounded-full border border-charcoal/15 px-4 py-2 font-bold text-charcoal"
                 type="button"
                 onClick={() => setModalOpen(false)}
               >
@@ -430,7 +430,7 @@ export default function Home() {
                 <label className="grid gap-2 font-bold">
                   First name
                   <input
-                    className="rounded-2xl border border-charcoal/15 bg-oat px-4 py-3 font-normal outline-none focus:border-clay"
+                    className="rounded-2xl border border-charcoal/15 bg-oat px-4 py-3 font-normal outline-none transition focus:border-clay"
                     name="firstName"
                     required
                   />
@@ -438,7 +438,7 @@ export default function Home() {
                 <label className="grid gap-2 font-bold">
                   Email
                   <input
-                    className="rounded-2xl border border-charcoal/15 bg-oat px-4 py-3 font-normal outline-none focus:border-clay"
+                    className="rounded-2xl border border-charcoal/15 bg-oat px-4 py-3 font-normal outline-none transition focus:border-clay"
                     name="email"
                     required
                     type="email"
@@ -447,7 +447,7 @@ export default function Home() {
                 <label className="grid gap-2 font-bold">
                   Neighbourhood / area
                   <select
-                    className="rounded-2xl border border-charcoal/15 bg-oat px-4 py-3 font-normal outline-none focus:border-clay"
+                    className="rounded-2xl border border-charcoal/15 bg-oat px-4 py-3 font-normal outline-none transition focus:border-clay"
                     name="area"
                     required
                     defaultValue=""
@@ -471,7 +471,7 @@ export default function Home() {
                       return (
                         <button
                           key={activity.name}
-                          className={`rounded-2xl border px-4 py-3 text-left text-sm font-bold transition ${
+                          className={`motion-press rounded-2xl border px-4 py-3 text-left text-sm font-bold transition ${
                             selected
                               ? "border-clay bg-clay text-cream"
                               : "border-charcoal/15 bg-oat text-charcoal"
@@ -489,7 +489,7 @@ export default function Home() {
                 {error && <p className="rounded-2xl bg-clay/10 px-4 py-3 text-sm font-bold text-clay">{error}</p>}
 
                 <button
-                  className="rounded-full bg-clay px-7 py-4 font-bold text-cream shadow-soft transition hover:bg-coral disabled:opacity-60"
+                  className="motion-press rounded-full bg-clay px-7 py-4 font-bold text-cream shadow-soft transition hover:bg-coral disabled:opacity-60"
                   disabled={submissionState === "loading" || selectedActivities.length === 0}
                   type="submit"
                 >
