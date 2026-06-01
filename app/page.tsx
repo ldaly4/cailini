@@ -164,45 +164,29 @@ function Icon({ type }: { type: string }) {
   );
 }
 
-function BrandStamp({ small = false }: { small?: boolean }) {
+function BrandMark({ small = false }: { small?: boolean }) {
   return (
     <div
-      className={`relative grid shrink-0 place-items-center rounded-full border-2 border-clay text-clay ${
-        small ? "h-12 w-12" : "h-48 w-48 md:h-60 md:w-60"
+      className={`grid shrink-0 place-items-center rounded-full border-2 border-clay bg-cream text-clay ${
+        small ? "h-12 w-12" : "h-24 w-24"
       }`}
       aria-hidden="true"
     >
-      <div className="absolute inset-1 rounded-full border border-clay" />
-      <div className={`grid place-items-center rounded-full border border-clay/40 ${small ? "h-8 w-8" : "h-28 w-28"}`}>
-        <svg
-          className={small ? "h-6 w-6" : "h-16 w-16"}
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.8"
-          viewBox="0 0 48 48"
-        >
-          <circle cx="12" cy="20" r="4" />
-          <circle cx="36" cy="20" r="4" />
-          <circle cx="24" cy="12" r="4" />
-          <path d="M12 25c4 9 20 9 24 0" />
-          <path d="M15 31c4 6 14 8 18 0" />
-          <path d="M24 28c-4-5-9-4-9 1 0 4 5 6 9 10 4-4 9-6 9-10 0-5-5-6-9-1Z" />
-          <path d="M24 39v5" />
-          <path d="M19 43h10" />
-        </svg>
-      </div>
-      {!small && (
-        <>
-          <p className="absolute top-5 text-[0.66rem] font-black uppercase tracking-[0.28em]">Sport · Wellness</p>
-          <p className="absolute bottom-5 text-[0.66rem] font-black uppercase tracking-[0.24em]">
-            By the girlies
-          </p>
-          <span className="absolute left-8 top-1/2 -translate-y-1/2 text-sangria">♥</span>
-          <span className="absolute right-8 top-1/2 -translate-y-1/2 text-sangria">♥</span>
-        </>
-      )}
+      <svg
+        className={small ? "h-7 w-7" : "h-14 w-14"}
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.9"
+        viewBox="0 0 48 48"
+      >
+        <circle cx="12" cy="21" r="4" />
+        <circle cx="36" cy="21" r="4" />
+        <circle cx="24" cy="12" r="4" />
+        <path d="M12 27c4 8 20 8 24 0" />
+        <path d="M24 29c-4-5-9-4-9 1 0 4 5 6 9 10 4-4 9-6 9-10 0-5-5-6-9-1Z" />
+      </svg>
     </div>
   );
 }
@@ -261,7 +245,7 @@ export default function Home() {
       <nav className="fixed inset-x-0 top-0 z-40 border-b border-charcoal/10 bg-oat/88 px-4 py-3 backdrop-blur md:px-8">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <a className="flex items-center gap-3 text-charcoal" href="#top" aria-label="Cailíní home">
-            <BrandStamp small />
+            <BrandMark small />
             <span className="script-wordmark text-4xl leading-none">Cailíní</span>
           </a>
           <div className="hidden items-center gap-7 text-sm font-semibold text-cocoa md:flex">
@@ -303,13 +287,17 @@ export default function Home() {
               Join the waitlist
             </button>
           </div>
-          <div className="grid justify-items-center rounded-[2rem] border border-charcoal/10 bg-cream/78 p-8 text-center shadow-soft backdrop-blur">
-            <BrandStamp />
-            <p className="script-wordmark mt-8 text-7xl leading-none text-clay">Cailíní</p>
-            <p className="mt-3 text-sm font-black uppercase tracking-[0.22em] text-sangria">
-              For the girlies, by the girlies
-            </p>
-            <p className="mt-5 max-w-sm text-cocoa">
+          <div className="rounded-[2rem] border border-charcoal/10 bg-cream/78 p-8 shadow-soft backdrop-blur">
+            <div className="flex items-center gap-5">
+              <BrandMark />
+              <div>
+                <p className="script-wordmark text-7xl leading-none text-clay">Cailíní</p>
+                <p className="mt-1 text-xs font-black uppercase tracking-[0.22em] text-sangria">
+                  For the girlies, by the girlies
+                </p>
+              </div>
+            </div>
+            <p className="mt-8 max-w-sm text-cocoa">
               Sport, wellness, and community for women who want someone to show up with.
             </p>
           </div>
