@@ -59,7 +59,10 @@
         font-weight: 800;
         cursor: pointer;
         box-shadow: 0 22px 60px rgba(8,31,92,.14);
+        transition: transform .2s ease, background .2s ease;
       }
+      button:hover { transform: translateY(-3px); background: var(--coral); }
+      button:active { transform: translateY(1px) scale(.98); }
       section { padding: 88px clamp(18px, 4vw, 48px); }
       .inner { max-width: 1240px; margin: 0 auto; }
       .hero {
@@ -75,6 +78,7 @@
         background-size: 14px 100%;
       }
       .blob {
+        animation: float-soft 12s ease-in-out infinite;
         position: absolute;
         right: -90px;
         top: 140px;
@@ -130,7 +134,9 @@
         background: var(--cream);
         padding: 24px;
         box-shadow: 0 22px 60px rgba(8,31,92,.12);
+        transition: transform .22s ease, border-color .22s ease, background .22s ease;
       }
+      .tile:hover, .step:hover, .stat:hover { transform: translateY(-4px); }
       .tile.selected { background: var(--clay); color: var(--cream); }
       .icon {
         display: grid;
@@ -182,6 +188,24 @@
         color: var(--cocoa);
         border-top: 1px solid rgba(8,31,92,.16);
       }
+      .rise { animation: rise-in .78s cubic-bezier(.2,.8,.2,1) both; }
+      .rise-delay { animation: rise-in .78s cubic-bezier(.2,.8,.2,1) .14s both; }
+      @keyframes rise-in {
+        from { opacity: 0; transform: translateY(22px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes float-soft {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+        50% { transform: translate3d(-12px,16px,0) rotate(5deg); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *:before, *:after {
+          animation-duration: .001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
       @media (max-width: 860px) {
         .navlinks { display: none; }
         .section-head { align-items: start; flex-direction: column; }
@@ -202,7 +226,7 @@
 
     <section class="hero">
       <div class="blob"></div>
-      <div class="inner">
+      <div class="inner rise">
         <p class="eyebrow">Coming to Dublin first</p>
         <h1 class="display">Find your women. Start moving.</h1>
         <p>Whatever the activity. Whatever your level. Just show up together.</p>
@@ -210,7 +234,7 @@
       </div>
     </section>
 
-    <section id="activities">
+    <section id="activities" class="rise-delay">
       <div class="inner">
         <div class="section-head">
           <div>
@@ -236,7 +260,7 @@
       </div>
     </section>
 
-    <section class="how" id="how">
+    <section class="how rise" id="how">
       <div class="inner">
         <h2 class="display" style="margin-bottom: 40px;">How it works</h2>
         <div class="grid steps">
@@ -247,7 +271,7 @@
       </div>
     </section>
 
-    <section class="why" id="why">
+    <section class="why rise" id="why">
       <div class="inner">
         <p class="eyebrow">Why it exists</p>
         <h2 class="display" style="max-width: 780px; margin-bottom: 40px;">Most people just need a first person.</h2>
