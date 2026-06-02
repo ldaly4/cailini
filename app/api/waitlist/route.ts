@@ -21,12 +21,17 @@ const areas = new Set([
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as {
+      firstName?: unknown;
+      email?: unknown;
+      area?: unknown;
+      activities?: unknown;
+    };
     const firstName = String(body.firstName ?? "").trim();
     const email = String(body.email ?? "").trim().toLowerCase();
     const area = String(body.area ?? "").trim();
     const activities = Array.isArray(body.activities)
-      ? body.activities.map((activity) => String(activity)).filter(Boolean)
+      ? body.activities.map((activity: unknown) => String(activity)).filter(Boolean)
       : [];
 
     if (!firstName || !email || !area || activities.length === 0) {
