@@ -27,12 +27,12 @@ export async function POST(request: Request) {
       area?: unknown;
       activities?: unknown;
     };
-    const firstName = String(body.firstName ?? "").trim();
+    const firstName = String(body.firstName ?? "Cailíní friend").trim();
     const email = String(body.email ?? "").trim().toLowerCase();
-    const area = String(body.area ?? "").trim();
+    const area = String(body.area ?? "other").trim();
     const activities = Array.isArray(body.activities)
       ? body.activities.map((activity: unknown) => String(activity)).filter(Boolean)
-      : [];
+      : ["General interest"];
 
     if (!firstName || !email || !area || activities.length === 0) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });

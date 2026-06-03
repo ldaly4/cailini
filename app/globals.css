@@ -4,7 +4,13 @@
 
 :root {
   color-scheme: light;
-  --pinstripe: linear-gradient(90deg, rgba(51, 78, 172, 0.105) 1px, transparent 1px);
+  --stripe-background: repeating-linear-gradient(
+    90deg,
+    #86a6cf 0 22px,
+    #f7fbff 22px 32px,
+    #d8edf8 32px 44px,
+    #f7fbff 44px 54px
+  );
 }
 
 * {
@@ -17,7 +23,7 @@ html {
 
 body {
   margin: 0;
-  background: #fff9f0;
+  background: var(--stripe-background);
   color: #081f5c;
 }
 
@@ -28,8 +34,7 @@ select {
 }
 
 .pinstripe {
-  background-image: var(--pinstripe);
-  background-size: 14px 100%;
+  background: transparent;
 }
 
 .organic-blob {
