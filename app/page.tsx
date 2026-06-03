@@ -1,6 +1,21 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  Bike,
+  CircleDot,
+  Dumbbell,
+  Flag,
+  Footprints,
+  Heart,
+  Mountain,
+  PersonStanding,
+  Shell,
+  Sparkles,
+  UsersRound,
+  Waves
+} from "lucide-react";
 
 const activities = [
   { name: "Running", hook: "Easy loops, steady starts.", icon: "run" },
@@ -62,133 +77,26 @@ const steps = [
 type SubmissionState = "idle" | "loading" | "success" | "error";
 
 function Icon({ type }: { type: string }) {
-  const paths: Record<string, React.ReactNode> = {
-    run: (
-      <>
-        <path d="M13 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-        <path d="m8 23 3-7-3-3-2 3H3l3-6 4-2 4 4 3 1h4v3h-5l-3-1 2 4 4 4h-4l-4-4-2 4H8Z" />
-      </>
-    ),
-    walk: (
-      <>
-        <path d="M13 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-        <path d="m10 23 2-7-3-3-3 3" />
-        <path d="m11 10 4 4 4 1" />
-        <path d="m13 16 4 7" />
-      </>
-    ),
-    golf: (
-      <>
-        <path d="M6 22h12" />
-        <path d="M12 22V4" />
-        <path d="M12 4h7l-2 3 2 3h-7" />
-        <circle cx="17" cy="18" r="1.5" />
-      </>
-    ),
-    padel: (
-      <>
-        <path d="M15.5 4.5c3 3 3.4 7.5.9 10s-7 2.1-10-.9-3.4-7.5-.9-10 7-2.1 10 .9Z" />
-        <path d="m14.5 14.5 6 6" />
-        <path d="m19 22 3-3" />
-      </>
-    ),
-    tennis: (
-      <>
-        <path d="M15.5 4.5c3 3 3.4 7.5.9 10s-7 2.1-10-.9-3.4-7.5-.9-10 7-2.1 10 .9Z" />
-        <path d="M5.5 3.5 16.5 14.5" />
-        <path d="M4 8h14" />
-      </>
-    ),
-    pilates: (
-      <>
-        <path d="M4 17c5-4 11-4 16 0" />
-        <path d="M6 21h12" />
-        <path d="M12 5v8" />
-        <path d="M8 9h8" />
-      </>
-    ),
-    yoga: (
-      <>
-        <path d="M12 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-        <path d="M4 19c4-5 12-5 16 0" />
-        <path d="m8 13 4 3 4-3" />
-      </>
-    ),
-    strength: (
-      <>
-        <path d="M2 10h4v4H2z" />
-        <path d="M18 10h4v4h-4z" />
-        <path d="M6 8h3v8H6z" />
-        <path d="M15 8h3v8h-3z" />
-        <path d="M9 12h6" />
-      </>
-    ),
-    cycling: (
-      <>
-        <circle cx="6" cy="17" r="4" />
-        <circle cx="18" cy="17" r="4" />
-        <path d="m6 17 5-8 3 8H6l5-8h4" />
-      </>
-    ),
-    swimming: (
-      <>
-        <path d="M3 17c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4 1 2-1 4-1" />
-        <path d="M3 21c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4 1 2-1 4-1" />
-        <path d="m8 13 4-7 5 3" />
-      </>
-    ),
-    dance: (
-      <>
-        <path d="M12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-        <path d="M7 22c3-4 4-8 3-12" />
-        <path d="M14 10c2 3 3 7 3 12" />
-        <path d="m8 13 8-2" />
-      </>
-    ),
-    hiking: (
-      <>
-        <path d="m3 21 7-12 4 6 3-5 4 11H3Z" />
-        <path d="M10 9 8 5" />
-        <path d="M8 5h5" />
-      </>
-    ),
-    heart: (
-      <>
-        <path d="M12 21s-8-4.8-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.2-8 11-8 11Z" />
-      </>
-    ),
-    match: (
-      <>
-        <circle cx="8" cy="8" r="3" />
-        <circle cx="16" cy="16" r="3" />
-        <path d="M11 10.5 13.5 13" />
-        <path d="M4 20c.7-3.2 2.4-5 4-5" />
-        <path d="M20 4c-.7 3.2-2.4 5-4 5" />
-      </>
-    ),
-    show: (
-      <>
-        <path d="M4 18 10 6l4 8 2-4 4 8H4Z" />
-        <path d="M4 22h16" />
-        <path d="M10 6h5" />
-      </>
-    )
+  const icons = {
+    run: Footprints,
+    walk: PersonStanding,
+    golf: Flag,
+    padel: CircleDot,
+    tennis: CircleDot,
+    pilates: Shell,
+    yoga: Sparkles,
+    strength: Dumbbell,
+    cycling: Bike,
+    swimming: Waves,
+    dance: Sparkles,
+    hiking: Mountain,
+    heart: Heart,
+    match: UsersRound,
+    show: Mountain
   };
+  const LucideIcon = icons[type as keyof typeof icons] ?? Sparkles;
 
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-8 w-8"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.7"
-      viewBox="0 0 24 24"
-    >
-      {paths[type]}
-    </svg>
-  );
+  return <LucideIcon aria-hidden="true" className="h-8 w-8" strokeWidth={1.7} />;
 }
 
 function BrandMark({ small = false }: { small?: boolean }) {
@@ -219,10 +127,16 @@ function BrandMark({ small = false }: { small?: boolean }) {
 }
 
 export default function Home() {
+  const activityScrollRef = useRef<HTMLDivElement>(null);
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
   const [error, setError] = useState("");
+  const { scrollYProgress: activityProgress } = useScroll({
+    target: activityScrollRef,
+    offset: ["start start", "end end"]
+  });
+  const activityX = useTransform(activityProgress, [0, 1], ["0%", "-68%"]);
 
   const selectedText = useMemo(() => {
     if (selectedActivities.length === 0) return "Pick at least one activity";
@@ -297,7 +211,12 @@ export default function Home() {
         <div className="organic-blob absolute -right-24 top-28 h-72 w-72 bg-coral/14 md:h-[34rem] md:w-[34rem]" />
         <div className="organic-blob absolute -bottom-24 left-6 h-56 w-56 bg-clay/8 md:h-80 md:w-80" />
         <div className="relative mx-auto max-w-7xl">
-          <div className="motion-rise max-w-5xl">
+          <motion.div
+            className="max-w-5xl"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.2, 0.8, 0.2, 1] }}
+          >
             <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Coming to Dublin first</p>
             <h1 className="font-display text-[clamp(4.2rem,12vw,10.5rem)] leading-[0.83] tracking-tight text-charcoal">
               Find your women. Start moving.
@@ -312,67 +231,87 @@ export default function Home() {
             >
               Join the waitlist
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section id="activities" className="motion-rise-delay px-4 py-20 md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Activity selector</p>
-              <h2 className="font-display text-5xl leading-none md:text-7xl">What moves you?</h2>
-            </div>
-            <p className="max-w-sm text-cocoa">{selectedText}</p>
+      <section id="activities" ref={activityScrollRef} className="relative h-[320vh] bg-oat">
+        <div className="sticky top-0 flex h-screen items-center overflow-hidden px-4 py-20 md:px-8">
+          <div className="absolute left-4 top-24 z-10 max-w-7xl md:left-8">
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Activity selector</p>
+            <h2 className="font-display text-5xl leading-none md:text-7xl">What moves you?</h2>
+            <p className="mt-4 max-w-sm text-cocoa">{selectedText}</p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <motion.div className="flex gap-5 pt-44 md:pt-36" style={{ x: activityX }}>
             {activities.map((activity) => {
               const selected = selectedActivities.includes(activity.name);
               return (
-                <button
+                <motion.button
                   key={activity.name}
-                  className={`motion-scale motion-press group rounded-[1.4rem] border p-5 text-left shadow-soft transition ${
+                  className={`motion-press group flex h-[340px] w-[min(78vw,360px)] shrink-0 flex-col justify-between rounded-[1.6rem] border p-6 text-left shadow-soft transition md:h-[390px] md:w-[420px] ${
                     selected
                       ? "border-clay bg-clay text-cream"
                       : "border-charcoal/10 bg-cream text-charcoal hover:border-clay/60"
                   }`}
                   type="button"
                   onClick={() => toggleActivity(activity.name)}
+                  whileHover={{ y: -8, rotate: selected ? 0 : -1.5 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <div
-                    className={`mb-7 inline-flex rounded-full border p-3 ${
-                      selected ? "border-cream/50 text-cream" : "border-clay/30 text-clay"
-                    }`}
-                  >
-                    <Icon type={activity.icon} />
+                  <div>
+                    <div
+                      className={`mb-12 inline-flex rounded-full border p-3 ${
+                        selected ? "border-cream/50 text-cream" : "border-clay/30 text-clay"
+                      }`}
+                    >
+                      <Icon type={activity.icon} />
+                    </div>
+                    <h3 className="font-display text-5xl leading-none md:text-6xl">{activity.name}</h3>
                   </div>
-                  <h3 className="text-lg font-bold">{activity.name}</h3>
-                  <p className={`mt-2 text-sm ${selected ? "text-cream/80" : "text-cocoa"}`}>{activity.hook}</p>
-                </button>
+                  <p className={`text-lg leading-7 ${selected ? "text-cream/80" : "text-cocoa"}`}>{activity.hook}</p>
+                </motion.button>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section id="how" className="motion-rise border-y border-charcoal/10 bg-cream px-4 py-20 md:px-8">
+      <motion.section
+        id="how"
+        className="border-y border-charcoal/10 bg-cream px-4 py-20 md:px-8"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-120px" }}
+        transition={{ duration: 0.65, ease: [0.2, 0.8, 0.2, 1] }}
+      >
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-10 font-display text-5xl leading-none md:text-7xl">How it works</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {steps.map((step) => (
-              <article key={step.text} className="motion-scale rounded-[1.5rem] border border-charcoal/10 bg-oat p-7 shadow-soft">
+              <motion.article
+                key={step.text}
+                className="rounded-[1.5rem] border border-charcoal/10 bg-oat p-7 shadow-soft"
+                whileHover={{ y: -6 }}
+              >
                 <span className="mb-16 inline-flex h-12 w-12 items-center justify-center rounded-full bg-clay text-cream">
                   <Icon type={step.icon} />
                 </span>
                 <p className="text-xl font-bold leading-7">{step.text}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="why" className="motion-rise bg-mist px-4 py-20 md:px-8">
+      <motion.section
+        id="why"
+        className="bg-mist px-4 py-20 md:px-8"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-120px" }}
+        transition={{ duration: 0.65, ease: [0.2, 0.8, 0.2, 1] }}
+      >
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Why it exists</p>
@@ -380,15 +319,15 @@ export default function Home() {
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
             {stats.map((stat) => (
-              <article key={stat.value} className="motion-scale rounded-[1.5rem] bg-oat p-7 shadow-soft">
+              <motion.article key={stat.value} className="rounded-[1.5rem] bg-oat p-7 shadow-soft" whileHover={{ y: -6 }}>
                 <p className="font-display text-6xl text-clay md:text-7xl">{stat.value}</p>
                 <p className="mt-5 text-xl font-bold leading-7">{stat.text}</p>
                 <p className="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-cocoa/70">{stat.source}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <footer className="px-4 py-10 md:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 border-t border-charcoal/10 pt-8 text-sm text-cocoa md:flex-row md:items-center md:justify-between">
@@ -405,7 +344,12 @@ export default function Home() {
 
       {modalOpen && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-charcoal/35 px-4 py-8 backdrop-blur-sm">
-          <div className="modal-pop max-h-[92vh] w-full max-w-2xl overflow-auto rounded-[2rem] bg-cream p-6 shadow-soft md:p-8">
+          <motion.div
+            className="max-h-[92vh] w-full max-w-2xl overflow-auto rounded-[2rem] bg-cream p-6 shadow-soft md:p-8"
+            initial={{ opacity: 0, y: 18, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.24 }}
+          >
             <div className="mb-6 flex items-start justify-between gap-5">
               <div>
                 <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-sangria">Waitlist</p>
@@ -497,7 +441,7 @@ export default function Home() {
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
         </div>
       )}
     </main>
