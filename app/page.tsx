@@ -186,7 +186,13 @@ function FinalCTA({ email, setEmail, submitState, error, onSubmit }: {
         <h2 className="font-display text-[clamp(4rem,9vw,9rem)] leading-[0.82] tracking-tight text-charcoal">
           Never play on your own again.
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-xl leading-8 text-cocoa">Join the Cailíní waitlist now.</p>
+        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-cocoa md:text-xl">
+          Cailíní is a women&apos;s sports community app for finding people nearby to play, move, and show up with.
+          Starting in Dublin, it helps women connect for golf, pilates, tennis, sea swims, walks, runs, wellness
+          socials, and beginner-friendly activities. Whether your friends have moved away, are too busy, or just
+          aren&apos;t interested, Cailíní helps you find women near you who are up for the same things, so you never
+          have to go on your own.
+        </p>
 
         {submitState === "success" ? (
           <p className="mx-auto mt-10 max-w-xl rounded-full bg-clay px-6 py-4 font-bold text-cream">
